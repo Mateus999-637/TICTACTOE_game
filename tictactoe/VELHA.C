@@ -1,32 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include <time.h>
-
 #define JOGADOR 'x'
 #define MAQUINA 'o'
-
-
-//PARA CHECAR VITORIA, VERIFICAR SE TODAS AS POSICOES DO TABULEIRO SAO DIFERENTES DE UNDERLINE E VERIFICAR CONDIÇÃO DE VITORIA COM BASE NAS POSICOES FAVORAVEIS DE VITORIA (posicoes_win)
-
-
-/* RASCUNHO legal 
-   bool ganhou = true;
-   
-   for int v, v<3, v++ 
-   if tabuleiro[i][j] == '_';
-   ganhou = false;
-   
-   if ganhou // jogo termina
-   
-*/   
 
 int main(){
 
 	srand(time(NULL));
 	
-	
+	int tentativa[9];
+	int tam_tab = 9;
+	int pos[9];
+	int cardinal = 0; //cardinal é o nome da forma do jogo da velha
 	int vitorias = 0;
 	int derrotas = 0;
 
@@ -58,14 +44,26 @@ int main(){
 	printf("\nEscolha uma posicaoo para jogar (utilize numeros 1 - 9): \n");
 	scanf("%d", &escolha);
 	
-	//int coordenada_salva = escolha;
-	int numero_random = rand() % 10;
-	//int maquina = numero_random;
+	bool repetida = false;
 	
-	printf("\n%d\n", numero_random);
-	
-	
+	for (int r = 0; r < cardinal; r++){
+		if(tentativa[r] == escolha){
+			repetida = true;
+			break;
+		}
+	}
+		
+	if (repetida) {
+        printf("Posicao %d já tentada!", escolha);
+        continue;
+    }
+    
+    tentativa[cardinal] = escolha;
+    cardinal++;
 
+	//int coordenada_salva = escolha; //int numero_random = rand() % 10;		
+	//int maquina = numero_random; //printf("\n%d\n", numero_random);
+	
 	switch (escolha){
 		
 		case 1:
@@ -115,5 +113,24 @@ int main(){
         }
     	printf("\n");
 	}
+	
+	//PARA CHECAR VITORIA, VERIFICAR SE TODAS AS POSICOES DO TABULEIRO SAO DIFERENTES DE UNDERLINE E VERIFICAR CONDIÇÃO DE VITORIA COM BASE NAS POSICOES FAVORAVEIS DE VITORIA (posicoes_win)
+
+
+	/* RASCUNHO legal 
+   		bool ganhou = false;
+   
+   		for int v, v<9, v++ 
+   		if tabuleiro[i][j] != '_';
+   		ganhou = true;
+   
+   		if ganhou // jogo termina
+   
+	*/  
+
+
+
+	//if (posicao de vitoria predefinida do  tabuleiro for difertente de underline e se forem pela mesma pessoa)
+	//for ()
   }
 }
